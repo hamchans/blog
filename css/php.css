@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+/* iPhone 縦 */
+section {
+    position: absolute;
+    display: none;
+}
+
+/* 表示スタイル（動作に無関係） */
+section {
+    margin-top: 3rem;
+    border: 1px solid #ccc;
+    padding: 3rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+#add {
+    background: #D8DBE2;
+}
+#edit {
+    background: #A9BCD0;
+}
+#delete {
+    background: #58A4B0;
+}
+
+/* for iPhone Landscape (iPhone 横) */
+@media screen and (min-width:480px) {
+    section {
+        position: absolute;
+        display: none;
+    }
+
+    /* 表示スタイル（動作に無関係） */
+    section {
+        margin-top: 3rem;
+        border: 1px solid #ccc;
+        padding: 3rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #add {
+        background: #D8DBE2;
+    }
+    #edit {
+        background: #A9BCD0;
+    }
+    #delete {
+        background: #58A4B0;
+    }
+}
+
+/* for iPad */
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    section {
+        position: absolute;
+        display: none;
+    }
+
+    /* 表示スタイル（動作に無関係） */
+    section {
+        margin-top: 3rem;
+        border: 1px solid #ccc;
+        padding: 3rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #add {
+        background: #D8DBE2;
+    }
+    #edit {
+        background: #A9BCD0;
+    }
+    #delete {
+        background: #58A4B0;
+    }
+}
+
+/* for PC */
+@media screen and (min-width:1024px) {
+   section {
+        position: absolute;
+        display: none;
+    }
+
+    /* 表示スタイル（動作に無関係） */
+    section {
+        margin-top: 3rem;
+        border: 1px solid #ccc;
+        padding: 3rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #add {
+        background: #D8DBE2;
+    }
+    #edit {
+        background: #A9BCD0;
+    }
+    #delete {
+        background: #58A4B0;
+    }
+}

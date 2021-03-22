@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+td {text-align: center;}
+td:first-child { color: red; }
+td:last-child { color: royalblue; }
+
+.today {color: chartreuse; }
