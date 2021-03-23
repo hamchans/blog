@@ -1,4 +1,4 @@
-<?php session_name("hamstask"); session_start(); ?>
+<?php session_name("hamswebapp"); session_start(); ?>
 
 <!DOCTYPE html>
 <head>
@@ -38,12 +38,12 @@
                     <script type="text/javascript">last_update();</script>
                 </div>
                 <div id="contents">
-                    <h3>タスク管理アプリ</h3>
+                    <h3>Webアプリ</h3>
                     <?php
                     if (!isset($_SESSION['userName'])) {
                         print "ログインしていません．<br><br>";
                         print<<<EOS
-                        <form method="post" action="login_check.php">
+                        <form method="post" action="index_check.php">
                             <h7>ユーザネーム</h7>
                             <br>
                             <input required type="text" name="userName">
@@ -58,7 +58,12 @@ EOS;
                     } else {
                         print $_SESSION['userName']."でログイン中．<br><br>";
                         print<<<EOS
-                        <a href="main.php">メイン画面へ</a>
+                        <br>
+                        <a href="/money/">家計簿アプリ</a>
+                        <br>
+                        <a href="/task/">タスク管理アプリ</a>
+                        <br>
+                        <a href="logout.php">ログアウト</a>
 EOS;
                     }
                     ?>

@@ -49,6 +49,8 @@ EOS;
                         print $_SESSION['userName']."でログイン中．<br><br>";
                         print<<<EOS
                         <a href="main.php">メイン画面へ</a>
+                        <br>
+                        <a href="logout.php">ログアウト</a>
 EOS;
                     }
                     

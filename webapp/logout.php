@@ -1,4 +1,9 @@
-<?php session_name("hamstask"); session_start(); ?>
+<?php
+session_name("hamswebapp");
+require_once(dirname(__FILE__).'/function.php');
+session_start();
+session_destroy();
+?>
 
 <!DOCTYPE html>
 <head>
@@ -38,31 +43,35 @@
                     <script type="text/javascript">last_update();</script>
                 </div>
                 <div id="contents">
-                    <h3>タスク管理アプリ</h3>
                     <?php
-                    if (!isset($_SESSION['userName'])) {
-                        print "ログインしていません．<br><br>";
-                        print<<<EOS
-                        <form method="post" action="login_check.php">
-                            <h7>ユーザネーム</h7>
-                            <br>
-                            <input required type="text" name="userName">
-                            <br>
-                            <h7>パスワード</h7>
-                            <br>
-                            <input required type="password" name="pwd">
-                            <br>
-                            <input type="submit" value="送信">
-                        </form>
-EOS;
+                    $dbh = connect();
+
+                    print('<br>');
+
+                    if ($dbh == null) {
+                        print('接続に失敗しました。<br>');
                     } else {
-                        print $_SESSION['userName']."でログイン中．<br><br>";
-                        print<<<EOS
-                        <a href="main.php">メイン画面へ</a>
+                        print('接続に成功しました。<br>');
+                        if (isset($_SESSION['userName'])) {
+
+                            $_SESSION['userName'] = null;
+                            $_SESSION['userId'] = null;
+
+                            print "ログインしていません．<br><br>";
+                            print<<<EOS
+                            ログアウト完了．<br>
+                            <a href="index.php">ホーム画面へ戻る</a>
 EOS;
+                        } else {
+                            print $_SESSION['userName']."でログイン中．<br><br>";
+                            print<<<EOS
+                            ログアウトできませんでした．<br>
+                            <a href="index.php">ホーム画面へ戻る</a>
+EOS;
+                        }
                     }
-                    ?>
                     
+                    ?>
                 </div>
             </div>
             <div class="col-md-3 d-none d-sm-block">

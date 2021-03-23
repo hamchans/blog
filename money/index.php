@@ -39,16 +39,18 @@
                 </div>
                 <div id="contents">
                     <?php
-                    if (!isset($_SESSION['login_name'])) {
+                    if (!isset($_SESSION['userName'])) {
                         print "ログインしていません．<br><br>";
                         print<<<EOS
                         <a href="login.php">ログイン画面へ</a><br>
                         <a href="register.php">ユーザ登録画面へ</a>
 EOS;
                     } else {
-                        print $_SESSION['login_name']."でログイン中．<br><br>";
+                        print $_SESSION['userName']."でログイン中．<br><br>";
                         print<<<EOS
                         <a href="main.php">メイン画面へ</a>
+                        <br>
+                        <a href="logout.php">ログアウト</a>
 EOS;
                     }
                     

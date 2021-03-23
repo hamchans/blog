@@ -1,4 +1,10 @@
-<?php session_name("hamstask"); session_start(); ?>
+<?php
+require_once(dirname(__FILE__).'/function.php');
+session_name("hamswebapp");
+session_start();
+
+
+?>
 
 <!DOCTYPE html>
 <head>
@@ -38,31 +44,50 @@
                     <script type="text/javascript">last_update();</script>
                 </div>
                 <div id="contents">
-                    <h3>タスク管理アプリ</h3>
                     <?php
-                    if (!isset($_SESSION['userName'])) {
-                        print "ログインしていません．<br><br>";
-                        print<<<EOS
-                        <form method="post" action="login_check.php">
-                            <h7>ユーザネーム</h7>
-                            <br>
-                            <input required type="text" name="userName">
-                            <br>
-                            <h7>パスワード</h7>
-                            <br>
-                            <input required type="password" name="pwd">
-                            <br>
-                            <input type="submit" value="送信">
-                        </form>
-EOS;
-                    } else {
-                        print $_SESSION['userName']."でログイン中．<br><br>";
-                        print<<<EOS
-                        <a href="main.php">メイン画面へ</a>
-EOS;
-                    }
-                    ?>
                     
+                    $userName = $_POST['userName'];
+                    $pwd = $_POST['pwd'];
+
+                    try{
+                        $dbh = connect();
+
+                        print('<br>');
+
+                        if ($dbh == null) {
+                            print('接続に失敗しました。<br>');
+                        } else {
+                            print('接続に成功しました。<br>');
+                            $sql = 'SELECT * FROM manager WHERE userName = ?';
+                            $stmt = $dbh->prepare($sql);
+                            $stmt->execute(array($userName));
+                            
+                            $row_count = $stmt->rowCount();
+                            
+                            if ($row_count == 1) {
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                                
+                                if ($pwd == $result['pwd']) {
+                                    $_SESSION['userName'] = $userName;
+                                    $_SESSION['userId'] = $result['userId'];
+                                    print "ログイン成功！<br>";
+                                    print "<a href=\"index.php\">アプリ選択ページ</a>へ<br>";
+                                } else {
+                                    print "パスワードが間違っています<br>";
+                                    print "<a href=\"index.php\">戻る</a><br>";
+                                }
+                                
+                            }
+                        }
+
+                    } catch (PDOException $e) {
+                        print('Error:'.$e->getMessage());
+                        die();
+                    }
+
+                    $dbh = null;
+
+                    ?>
                 </div>
             </div>
             <div class="col-md-3 d-none d-sm-block">
