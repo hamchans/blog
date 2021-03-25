@@ -1,4 +1,10 @@
-<?php session_name("hamswebapp"); session_start(); ?>
+<?php
+require_once(dirname(__FILE__).'/function.php');
+session_name("hamswebapp");
+session_start();
+
+
+?>
 
 <!DOCTYPE html>
 <head>
@@ -57,14 +63,36 @@
 EOS;
                     } else {
                         print $_SESSION['userName']."でログイン中．<br><br>";
-                        print<<<EOS
-                        <br>
-                        <a href="/money/">家計簿アプリ</a>
-                        <br>
-                        <a href="/task/">タスク管理アプリ</a>
-                        <br>
-                        <a href="logout.php">ログアウト</a>
+                        
+                        try{
+                            $dbh = connect();
+
+                            if ($dbh == null) {
+                                print('接続に失敗しました。<br>');
+                            } else {
+                                print('接続に成功しました。<br>');
+                                $sql = 'SELECT ap.app, ap.appName FROM app ap, authority au WHERE userId = ? and ap.id = au.authority';
+                                $stmt = $dbh->prepare($sql);
+                                $stmt->execute(array($_SESSION['userId']));
+                                
+                                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    print "<a href=\"/".$result['app']."/\">".$result['appName']."</a>";
+                                    print "<br>";
+                                }
+                                print<<<EOS
+                                <a href="logout.php">ログアウト</a>
 EOS;
+
+                                
+                            }
+
+                        } catch (PDOException $e) {
+                            print('Error:'.$e->getMessage());
+                            die();
+                        }
+
+                        $dbh = null;
+                        
                     }
                     ?>
                     
