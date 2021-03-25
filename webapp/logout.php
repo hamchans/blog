@@ -63,9 +63,7 @@ session_destroy();
                             <a href="index.php">ホーム画面へ戻る</a>
 EOS;
                         } else {
-                            print $_SESSION['userName']."でログイン中．<br><br>";
                             print<<<EOS
-                            ログアウトできませんでした．<br>
                             <a href="index.php">ホーム画面へ戻る</a>
 EOS;
                         }
