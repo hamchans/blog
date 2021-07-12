@@ -13,10 +13,12 @@ function header() {
     html += '<div class="collapse navbar-collapse links" id="navbarSupportedContent">';
     html += '<ul class="navbar-nav mr-auto">';
     html += '<li class="nav-item"><a class="nav-link" href="/index.html">ホーム</a></li>';
-    html += '<li class="nav-item"><a class="nav-link" href="/trip/index.html">旅行記</a></li>';
-    html += '<li class="nav-item"><a class="nav-link" href="/world_heritage_sites/index.html">世界遺産リスト</a></li>';
-    html += '<li class="nav-item"><a class="nav-link" href="/bucket_list/index.html">バケットリスト</a></li>';
-    html += '<li class="nav-item"><a class="nav-link" href="/goal/index.html">今年の目標</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/covid19">COVID19</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/trip">旅行記</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/ec">はむのフリマサイト</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/world_heritage_sites">世界遺産リスト</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/bucket_list">バケットリスト</a></li>';
+    html += '<li class="nav-item"><a class="nav-link" href="/goal">今年の目標</a></li>';
     html += '<li class="nav-item"><a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeaEsjgy9NbKu4nk4YpKFwXNVSM2ul9YdWl1Kuoi_0lbXPRnQ/viewform?usp=sf_link">お問い合わせ</a></li>';
     html += '<li class="nav-item"><a class="nav-link" href="/webapp/index.php">WebApp</a></li>';
     html += '</ul>';
