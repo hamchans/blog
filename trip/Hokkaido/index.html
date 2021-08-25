@@ -1,11 +1,3 @@
-<?php
-require_once(dirname(__FILE__).'/function.php');
-session_name("hamswebapp");
-session_start();
-
-
-?>
-
 <!DOCTYPE html>
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -30,7 +22,7 @@ session_start();
     <script type="text/javascript" src="/javascript/rightSideNavi.js"></script>
     <script type="text/javascript" src="/javascript/calendar.js"></script>
     <style type="text/css"></style>
-    <title>WebApp</title>
+    <title>ホーム</title>
 </head>
 <body>
     <script type="text/javascript">header();</script>
@@ -43,59 +35,24 @@ session_start();
                 <div class="last_update">
                     <script type="text/javascript">last_update();</script>
                 </div>
+                <h6>最近の更新</h6>
                 <div id="contents">
-                    <h3>Webアプリ</h3>
-                    <?php
-                    if (!isset($_SESSION['userName'])) {
-                        print "ログインしていません．<br><br>";
-                        print<<<EOS
-                        <form method="post" action="index_check.php">
-                            <h7>ユーザネーム</h7>
-                            <br>
-                            <input required type="text" name="userName">
-                            <br>
-                            <h7>パスワード</h7>
-                            <br>
-                            <input required type="password" name="pwd">
-                            <br>
-                            <input type="submit" value="送信">
-                        </form>
-EOS;
-                    } else {
-                        print $_SESSION['userName']."でログイン中．<br><br>";
-                        
-                        try{
-                            $dbh = connect();
-
-                            if ($dbh == null) {
-                                print('接続に失敗しました。<br>');
-                            } else {
-                                print('接続に成功しました。<br>');
-                                $sql = 'SELECT ap.app, ap.appName FROM app ap, authority au WHERE userId = ? and ap.id = au.authority';
-                                $stmt = $dbh->prepare($sql);
-                                $stmt->execute(array($_SESSION['userId']));
-                                
-                                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                    print "<a href=\"/".$result['app']."/\">".$result['appName']."</a>";
-                                    print "<br>";
-                                }
-                                print<<<EOS
-                                <a href="logout.php">ログアウト</a>
-EOS;
-
-                                
-                            }
-
-                        } catch (PDOException $e) {
-                            print('Error:'.$e->getMessage());
-                            die();
-                        }
-
-                        $dbh = null;
-                        
-                    }
-                    ?>
-                    
+                    <section class="CardList">
+                        <a href="/trip/Hokkaido/r2_2_5">
+                            <article>
+                                <img src="/photo/trip/Hokkaido/Feb_5th_2020/Feb_5th_2020-top.jpg">
+                                <h3>北海道 1 人旅 1 日目</h3>
+                                <span class="term">
+                                    2020/2/5 - 2020/2/8
+                                </span>
+                                <br>
+                                <span class="location">
+                                    Hokkaido
+                                </span>
+                            </article>
+                        </a>
+                        <hr>
+                    </section>
                 </div>
             </div>
             <div class="col-md-3 d-none d-sm-block">

@@ -1,5 +1,7 @@
-a.out
+*.out
 .DS_Store
 very_large_data
+*.class
+*.sql
 photo
 function.php
